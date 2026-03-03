@@ -1,0 +1,64 @@
+{
+    "products": [
+        {
+            "name": "Vintage T-Shirt",
+            "description": "Tie-dye Grateful Dead T-shirt from the 1970s",
+            "price": "$35.00",
+            "categories": ["clothing", "vintage"]
+        },
+        {
+            "name": "Vintage Jean Jacket",
+            "description": "Denim, ripped jacket from the 1980s",
+            "price": "$65.00",
+            "categories": ["clothing", "vintage", "jacket"]
+        },
+        {
+            "name": "China Plates",
+            "description": "Beautifully hand-designed, delicate china for everyday use",
+            "price": "$45.00",
+            "categories": ["plates", "china", "handmade"]
+        },
+        {
+            "name": "Ceramic Mug",
+            "description": "Hand-painted 16oz ceramic mug with floral designs",
+            "price": "$30.00",
+            "categories": ["kitchen", "handmade"]
+        },
+        {
+            "name": "Typewriter",
+            "description": "Portable, fully functional typewriter from 1960s",
+            "price": "$235.00",
+            "categories": ["vintage", "collectible"]
+        },
+        {
+            "name": "Picture Frame",
+            "description": "Beautiful, gold detailed picture frame on mahogany wood",
+            "price": "$25.00",
+            "categories": ["vintage", "home-decor"]
+        },
+        {
+            "name": "Digital Camera",
+            "description": "Refurbished digital camera from 2000s, battery not included",
+            "price": "$100.00",
+            "categories": ["electronics", "vintage"]
+        },
+        {
+            "name": "Film Camera",
+            "description": "Vintage film camera in perfect condition",
+            "price": "$135.00",
+            "categories": ["electronics", "vintage"]
+        },
+        {
+            "name": "Vinyl",
+            "description": "Michael Jackson Thriller Vinyl in original sleeve",
+            "price": "$29.00",
+            "categories": ["music", "vintage"]
+        },
+        {
+            "name": "Desk Lamp",
+            "description": "LED Desk lamp with a USB charging port",
+            "price": "$45.00",
+            "categories": ["electronics", "office"]
+        }
+    ]
+}

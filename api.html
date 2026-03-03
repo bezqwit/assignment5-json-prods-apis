@@ -1,0 +1,42 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>NASA Astronomy picture of the day</h1>
+
+        <button onclick="load()">Get today's picture</button>
+
+        <div id="result"></div>
+
+        <script>
+            function load()
+            {
+                url = "https://api.nasa.gov/planetary/apod?api_key=EPmJWVSbJ3z1G1NpXZsfMXLakEWVfvcedmFl4pa0"
+                fetch(url)
+                .then(res => res.text())
+                .then(data =>
+                {
+                    resp = JSON.parse(data)
+
+                    var html = "";
+                    html += "<h2>" + resp.title + "</h2>";
+                    html += "<p>Date: " + resp.date + "</p>";
+                    html += "<img src='" + resp.url + "' width='500px'><br><br>";
+                    html += "<p>" + resp.explanation + "</p>";
+                    html += "<p>Copyright: " + resp.copyright + "</p>";
+
+                    document.getElementById("result").innerHTML = html;
+                }) 
+                .catch(error => console.log(error))
+            } 
+        </script>
+
+        <hr>
+        
+        <p><b>What?: </b> The NASA Astronomy Picture of the Day API returns different astronomy images every day with a description written by an astronomer.</p>
+        <p><b>Why I selected it:</b> It is free, returns JSON, and I actually used this API for a CS assignment in high school so it's familiar.</p>
+        <p><b>Cite:</b> https://api.nasa.gov/</p>
+        <p><b>Parameters:</b> It only needs an api_key which I got from the api.nasa.gov. This is what allows my request for the info.</p>
+        <p><b>helpful?: </b> A school could use this to show students astronomy images every day. I used it in school when I took a CS class that collaborated with the astronomy class to showcase the use of the API.</p>
+    </body>
+</html>
