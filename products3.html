@@ -1,0 +1,90 @@
+<html>
+    <head></head>
+        
+    <body>
+        <h1>Products</h1>
+
+        <button onclick="load()">Load Products</button>
+        <button onclick="filter()">Filter Products</button>
+        <select id="categorySelect"></select>
+
+        <div id="result"></div>
+
+        <script>
+            window.onload = function() //allowing us to have the dropdown boxes with the categories to be read
+{
+            request = new XMLHttpRequest();
+            request.open("GET", "products.json", true);
+            request.onreadystatechange = function()
+            {
+                if (request.readyState == 4 && request.status == 200)
+                {
+                    theData = request.responseText;
+                    products = JSON.parse(theData);
+                    //get the categories
+                    var categories = [];
+                    for (var i = 0; i < products.products.length; i++) {
+                        var prod = products.products[i];
+                        for (var j = 0; j < prod.categories.length; j++) {
+                            //only put in the list if not already in the list
+                            if (categories.indexOf(prod.categories[j]) == -1) {
+                                categories[categories.length] = prod.categories[j];
+                            }
+                        }
+                    }
+                    //add category as an option...
+                    var select = document.getElementById("categorySelect");
+                    for (var k = 0; k < categories.length; k++) {
+                        select.innerHTML += "<option>" + categories[k] + "</option>";
+                    }
+                }
+            }
+            request.send();
+        }
+
+        function filter()
+        {
+            var selected = document.getElementById("categorySelect").value;
+            var html = "";
+
+            //loop through all products
+
+            for (var i = 0; i < products.products.length; i++) {
+                var prod = products.products[i];
+                if (prod.categories.indexOf(selected) != -1) {
+                    html += prod.name + "<br>";
+                }
+            }
+
+            document.getElementById("result").innerHTML = html;
+        }
+            function load() { //from previous part
+                request = new XMLHttpRequest(); //based on slides logic
+                request.open("GET", "products.json", true);
+                request.onreadystatechange = function()
+                {
+                    if (request.readyState == 4 && request.status == 200)
+                    {
+                        theData = request.responseText;
+                        products = JSON.parse(theData);
+                        var html = "";
+                        //the loop is going through each product in the array
+                        for (var i = 0; i < products.products.length; i++) {
+                            var prod = products.products[i]; //current product based on index
+
+                            html += "<b>" + prod.name + "</b><br>";
+                            html += prod.description + "<br>";
+                            html += "Price: " + prod.price + "<br>";
+                            html += "Categories: " + prod.categories.join(", ") + "<br><br>";
+                        }
+
+                        document.getElementById("result").innerHTML = html;
+                    } //end if completed
+                    else if (request.readyState == 4 && request.status != 200)
+                        document.getElementById("result").innerHTML += "<br>Request failed!";
+                } // end load data event stuff
+                request.send();
+            }
+        </script>
+    </body>
+</html>
