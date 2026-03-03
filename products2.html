@@ -1,0 +1,41 @@
+<html>
+    <head></head>
+        
+    <body>
+        <h1>Products</h1>
+
+        <button onclick="load()">Load Products</button>
+
+        <div id="result"></div>
+
+        <script>
+            function load() {
+                request = new XMLHttpRequest(); //based on slides logic
+                request.open("GET", "products.json", true);
+                request.onreadystatechange = function()
+                {
+                    if (request.readyState == 4 && request.status == 200)
+                    {
+                        theData = request.responseText;
+                        products = JSON.parse(theData);
+                        var html = "";
+                        //the loop is going through each product in the array
+                        for (var i = 0; i < products.products.length; i++) {
+                            var prod = products.products[i]; //current product based on index
+
+                            html += "<b>" + prod.name + "</b><br>";
+                            html += prod.description + "<br>";
+                            html += "Price: " + prod.price + "<br>";
+                            html += "Categories: " + prod.categories.join(", ") + "<br><br>";
+                        }
+
+                        document.getElementById("result").innerHTML = html;
+                    } //end if completed
+                    else if (request.readyState == 4 && request.status != 200)
+                        document.getElementById("result").innerHTML += "<br>Request failed!";
+                } // end load data event stuff
+                request.send();
+            }
+        </script>
+    </body>
+</html>
